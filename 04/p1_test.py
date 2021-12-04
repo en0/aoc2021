@@ -1,5 +1,6 @@
 import unittest
-from p2 import Solution
+from io import StringIO
+from p1 import Solution
 
 
 class SolutionTest(unittest.TestCase):
@@ -9,8 +10,7 @@ class SolutionTest(unittest.TestCase):
 
     @unittest.skip("n/a")
     def test_given(self):
-        expected = None
-        self.assertEqual(Solution().solve(self.data), expected)
+        self.assertEqual(Solution().solve(self.data), 4512)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,11 @@ class SolutionTest(unittest.TestCase):
             "01010",
         ])
 
-    unittest.skip("n/a")
+    def test_compute_gama_epsilon(self):
+        gama, epsilon = Solution().compute_gama_epsilon(self.data)
+        self.assertEqual(gama, '10110')
+        self.assertEqual(epsilon, '01001')
+
     def test_given(self):
         self.assertEqual(Solution().solve(self.data), 198)
 
