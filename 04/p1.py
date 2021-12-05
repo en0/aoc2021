@@ -1,10 +1,20 @@
-from typing import Iterable
+from typing import Iterable, List
 from aocfw import SolutionBase
+from aocfw.typing import IParser
+from bingo import BingoBoard, BingoParser
 
 
 class Solution(SolutionBase):
-    def solve(self, data: Iterable[int]) -> int:
-        raise NotImplementedError()
+    bindings = {IParser: BingoParser}
+    def solve(self, data: Iterable[any]) -> int:
+        called: List[int] = next(data)
+        boards: List[BingoBoard] = next(data)
+
+        for val in called:
+            for board in boards:
+                if board.mark(val):
+                    return board.get_score()*val
+        return None
 
 
 if __name__ == "__main__":

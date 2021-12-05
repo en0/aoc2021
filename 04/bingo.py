@@ -5,6 +5,13 @@ from aocfw.typing import IParser
 
 class BingoBoard:
 
+    def get_score(self):
+        score = 0
+        for m, v in zip(self._marks, self._numbers):
+            if not m:
+                score += v
+        return score
+
     def append(self, row: Iterable[int]):
         for v in row:
             self._set.add(v)
@@ -41,7 +48,7 @@ class BingoBoard:
 
 class BingoParser(IParser):
     def parse(self, data: IO) -> Iterable[any]:
-        yield map(int, next(data).split(","))
+        yield map(int, next(data).rstrip("\n").split(","))
         boards = []
         for line in map(lambda x: x.rstrip("\n"), data):
             if line == "":

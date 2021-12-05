@@ -62,6 +62,12 @@ class SolutionTest(unittest.TestCase):
         for v, s in zip([21, 16, 8, 11, 0], [False, False, False, False, True]):
             self.assertEqual(self.board.mark(v), s)
 
+    def test_board_score(self):
+        for v in [7, 4, 9, 5, 11, 17, 23, 2, 0, 14, 21, 24]:
+            self.board.mark(v)
+        self.assertTrue(self.board.check_board())
+        self.assertEqual(self.board.get_score(), 188)
+
 
 if __name__ == "__main__":
     unittest.main()
