@@ -1,6 +1,5 @@
 from typing import Iterable, List
-from aocfw import SolutionBase
-from aocfw.typing import IParser
+from aocfw import SolutionBase, IParser
 from bingo import BingoBoard, BingoParser
 
 

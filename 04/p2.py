@@ -1,6 +1,5 @@
 from typing import Iterable, Deque
-from aocfw import SolutionBase
-from aocfw.typing import IParser
+from aocfw import SolutionBase, IParser
 from collections import deque
 from bingo import BingoParser, BingoBoard
 

@@ -1,6 +1,5 @@
 from typing import Iterable
-from aocfw import SolutionBase
-from aocfw.typing import IParser
+from aocfw import SolutionBase, IParser
 
 from parser import SubmarineInstructionParser
 

@@ -1,25 +1,20 @@
-import unittest
+from unittest import TestCase, main
+from aocfw import TestCaseMixin
 from p2 import Solution
 
 
-class SolutionTest(unittest.TestCase):
-    def setUp(self) -> None:
-        self.data = iter([
-            199, 200, 208, 210,
-            200, 207, 240, 269,
-            260, 263,
-        ])
+class SolutionTest(TestCase, TestCaseMixin):
+
+    solution = Solution
+    source = "sample.txt"
+    given = 5
 
     def test_windowed(self):
-        s = Solution()
-        r = s.windowed(self.data)
+        data = self.get_parsed_data()
+        r = Solution().windowed(data)
         self.assertEqual(next(r), 607)
         self.assertEqual(next(r), 618)
 
-    def test_solution(self):
-        s = Solution()
-        self.assertEqual(s.solve(self.data), 5)
-
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

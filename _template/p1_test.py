@@ -1,17 +1,14 @@
-import unittest
+from unittest import TestCase, main
+from aocfw import TestCaseMixin
 from p1 import Solution
 
 
-class SolutionTest(unittest.TestCase):
-    def setUp(self):
-        self.data = iter([
-        ])
+class SolutionTests(TestCase, TestCaseMixin):
 
-    @unittest.skip("n/a")
-    def test_given(self):
-        expected = None
-        self.assertEqual(Solution().solve(self.data), expected)
+    solution = Solution
+    source = "sample.txt"
+    given = None
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

@@ -1,6 +1,5 @@
 from typing import Iterable
-from aocfw import SolutionBase, StringParser
-from aocfw.typing import IParser
+from aocfw import SolutionBase, StringParser, IParser
 
 
 class Solution(SolutionBase):
