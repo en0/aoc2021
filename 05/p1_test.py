@@ -22,16 +22,18 @@ class SolutionTests(TestCase, TestCaseMixin):
     def test_iter_points(self):
         data = self.get_parsed_data()
 
-        line = next(data)
+        line = list(next(data))
         all_expected = [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9)]
+        self.assertEqual(len(line), len(all_expected))
         for expected, actual in zip(all_expected, line):
             self.assertEqual(expected, actual)
 
         # Skip this one, its not "hv"
         next(data)
 
-        line = next(data)
+        line = list(next(data))
         all_expected = [(3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4), (9, 4)]
+        self.assertEqual(len(line), len(all_expected))
         for expected, actual in zip(all_expected, line):
             self.assertEqual(expected, actual)
 
