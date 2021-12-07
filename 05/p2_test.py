@@ -7,7 +7,7 @@ class SolutionTests(TestCase, TestCaseMixin):
 
     solution = Solution
     source = "sample.txt"
-    given = None
+    given = 12
 
     def test_iter_points(self):
         data = self.get_parsed_data()
