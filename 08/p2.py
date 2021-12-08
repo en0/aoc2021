@@ -21,19 +21,23 @@ class Solution(SolutionBase):
             ret[len(val)].append(val)
         return ret
 
+    def select(self, data, predicate = None):
+        predicate = predicate or (lambda x: True)
+        return [x for x in data if predicate(x)][0]
+
     def map_values(self, data):
         ret = {}
         by_count = self.collect_by_count(data)
-        ret[1] = by_count[2][0]
-        ret[4] = by_count[4][0]
-        ret[7] = by_count[3][0]
-        ret[8] = by_count[7][0]
-        ret[3] = [x for x in by_count[5] if len(ret[1] - x) == 0][0]
+        ret[1] = self.select(by_count[2])
+        ret[4] = self.select(by_count[4])
+        ret[7] = self.select(by_count[3])
+        ret[8] = self.select(by_count[7])
+        ret[3] = self.select(by_count[5], lambda x: len(ret[1] - x) == 0)
         ret[9] = ret[4] | ret[3]
-        ret[6] = [x for x in by_count[6] if len(x - ret[1]) == 5][0]
-        ret[0] = [x for x in by_count[6] if x not in [ret[9], ret[6]]][0]
-        ret[5] = [x for x in by_count[5] if len(x - ret[6]) == 0][0]
-        ret[2] = [x for x in by_count[5] if x not in (ret[3], ret[5])][0]
+        ret[6] = self.select(by_count[6], lambda x: len(x - ret[1]) == 5)
+        ret[0] = self.select(by_count[6], lambda x: x not in (ret[9], ret[6]))
+        ret[5] = self.select(by_count[5], lambda x: len(x - ret[6]) == 0)
+        ret[2] = self.select(by_count[5], lambda x: x not in (ret[3], ret[5]))
         return {self.set_to_str(v): str(k) for k, v in ret.items()}
 
     def decode_value(self, mapping, outputs):
@@ -43,10 +47,7 @@ class Solution(SolutionBase):
         return int("".join(digs))
 
     def solve(self, data: Iterable[int]) -> int:
-        return sum([
-            self.decode_value(self.map_values(_in), _out)
-            for _in, _out in data
-        ])
+        return sum([self.decode_value(self.map_values(i), o) for i, o in data])
 
 
 if __name__ == '__main__':
